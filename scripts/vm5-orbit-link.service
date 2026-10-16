@@ -1,0 +1,12 @@
+[Unit]
+Description=Update VM5 game's stable redirect when tunnel hostname changes
+After=network-online.target vm5-orbit-tunnel.service
+[Service]
+Type=oneshot
+User=gptagent
+Group=gptagent
+WorkingDirectory=/srv/multi-vm-agent/workspace/make_money/work/orbit-garden
+ExecStart=/srv/multi-vm-agent/workspace/make_money/work/orbit-garden/scripts/update-live-url.sh
+TimeoutStartSec=90
+[Install]
+WantedBy=multi-user.target

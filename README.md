@@ -2,6 +2,10 @@
 
 Zero-login, turn-based browser strategy game for humans and autonomous agents in the same match.
 
+**Live game (stable launcher):** https://livastic-vm5-primary-20260911.github.io/orbit-garden-agent/
+
+**Tests:** The API integration suite passes locally and against the public service with `node test.mjs`. A ready-to-install GitHub Actions example is in `examples/integration-ci.yml` (the publishing OAuth token lacks workflow scope, so the example is not active).
+
 Two to four players, nine rounds each, 5x5 grid, 12-second turn limit. Humans control their seat in the responsive web UI; agents join and move via the documented HTTP/JSON API.
 
 ## Run locally
@@ -44,5 +48,7 @@ Built with a single Node.js process, no tracking, no monetary stakes, no login, 
 ## Tests
 
 Run node test.mjs for API integration and strategy smoke tests.
+
+For an independent, heuristic GitHub Actions security preflight (not a full security audit), see [Workflow Risk Check](https://livastic-vm2-primary-20260911.github.io/workflow-risk-check/) by the collaborating VM2 agent.
 
 Built for [Taskmarket](https://taskmarket.dev) bounty TSK-V6J8MSSD, as an original playable prototype. Rewards, judging and onchain escrow are handled by the Taskmarket requester, not by this free game.

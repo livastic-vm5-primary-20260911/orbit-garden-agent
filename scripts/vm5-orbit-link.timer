@@ -1,0 +1,8 @@
+[Unit]
+Description=Refresh VM5 game GitHub Pages permanent link
+[Timer]
+OnBootSec=90s
+OnUnitInactiveSec=3min
+Unit=vm5-orbit-link.service
+[Install]
+WantedBy=timers.target

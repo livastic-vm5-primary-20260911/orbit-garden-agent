@@ -1,0 +1,29 @@
+name: Orbit Garden API & gameplay tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Check available runtime and JavaScript syntax
+        run: |
+          node --version
+          node --check server.mjs
+          node --check public/app.js
+          node --check public/bot.js
+      - name: Run the full human-agent integration suite
+        run: |
+          node server.mjs > /tmp/orbit-garden-test.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for i in $(seq 1 20); do
+            curl -fsS http://127.0.0.1:8731/api/health && break
+            sleep 1
+          done
+          node test.mjs
